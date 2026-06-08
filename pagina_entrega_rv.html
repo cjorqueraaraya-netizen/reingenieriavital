@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)file:///Users/claudiajorqueraaraya/Downloads/pagina_entrega_RV%20(1).html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu recurso está aquí · Reingeniería Vital®</title>
+<link href="./Tu recurso está aquí · Reingeniería Vital®_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --cream:   #F7F2EA;
+    --cream2:  #EDE6D8;
+    --warm:    #E8DEC8;
+    --gold:    #B8935A;
+    --gold2:   #9A7840;
+    --dark:    #1A1714;
+    --text:    #3D3529;
+    --muted:   #8A7E6E;
+    --border:  rgba(184,147,90,0.18);
+    --shadow:  rgba(60,45,25,0.10);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN */
+  body::after {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:999;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: rgba(247,242,234,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .nav-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 15%; bottom: 15%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 80px 80px 64px;
+    background: var(--cream2);
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 4.5vw, 62px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.45s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .gold-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 28px 0;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.6s;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 400px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.7s;
+  }
+
+  .hero-sub strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── VIDEO BLOCK ── */
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--dark);
+    overflow: hidden;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.35s;
+  }
+
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    cursor: pointer;
+    background: var(--dark);
+    position: absolute;
+    inset: 0;
+    transition: background 0.3s;
+  }
+
+  .video-placeholder:hover { background: #252019; }
+
+  .play-btn {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .video-placeholder:hover .play-btn {
+    background: var(--gold);
+  }
+
+  .video-placeholder:hover .play-btn svg path {
+    fill: var(--dark);
+  }
+
+  .play-btn svg path { fill: var(--gold); transition: fill 0.3s; }
+
+  .video-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(184,147,90,0.6);
+  }
+
+  .video-note {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.5s;
+  }
+
+  /* ── STEPS SECTION ── */
+  .steps-section {
+    background: var(--dark);
+    padding: 96px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    position: relative;
+  }
+
+  .steps-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 80px; right: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(184,147,90,0.3), transparent);
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(184,147,90,0.2);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(232,222,200,0.5);
+  }
+
+  .step-icon {
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  /* ── ABOUT SECTION ── */
+  .about-section {
+    padding: 96px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: var(--warm);
+    border-top: 1px solid var(--border);
+  }
+
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--dark);
+  }
+
+  .about-quote span {
+    color: var(--gold);
+  }
+
+  .about-text {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+
+  .about-text strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .about-sig {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sig-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--dark);
+  }
+
+  .sig-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── DIAGNOSTIC CTA ── */
+  .diag-section {
+    padding: 96px 80px;
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .diag-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .diag-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 24px;
+  }
+
+  .diag-title em { font-style: italic; color: var(--gold); }
+
+  .diag-desc {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--muted);
+  }
+
+  .diag-card {
+    background: var(--dark);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diag-card::before {
+    content: 'RV';
+    position: absolute;
+    right: -10px;
+    bottom: -30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 140px;
+    font-weight: 600;
+    color: rgba(184,147,90,0.05);
+    line-height: 1;
+    letter-spacing: -4px;
+    pointer-events: none;
+  }
+
+  .diag-card-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(184,147,90,0.6);
+    margin-bottom: 20px;
+  }
+
+  .diag-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+
+  .diag-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .diag-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(232,222,200,0.6);
+    line-height: 1.5;
+  }
+
+  .diag-list li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .btn-diag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gold);
+    border: none;
+    color: var(--dark);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-diag:hover { background: #C9A468; }
+
+  .btn-diag svg { transition: transform 0.3s; }
+  .btn-diag:hover svg { transform: translateX(4px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 48px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(184,147,90,0.1);
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: rgba(184,147,90,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* ── DOWNLOAD BTN ── */
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.85s;
+  }
+
+  .btn-download:hover {
+    background: var(--gold);
+    color: var(--cream);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(14px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .hero-left {
+      padding: 100px 24px 48px;
+    }
+
+    .hero-left::after { display: none; }
+
+    .hero-right {
+      padding: 48px 24px;
+    }
+
+    .steps-section {
+      grid-template-columns: 1fr;
+      padding: 64px 24px;
+      gap: 40px;
+    }
+
+    .about-section,
+    .diag-section {
+      grid-template-columns: 1fr;
+      padding: 64px 24px;
+      gap: 40px;
+    }
+
+    footer {
+      flex-direction: column;
+      gap: 12px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Reingeniería Vital®</div>
+  <div class="nav-tag">Tu recurso está aquí</div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+
+  <!-- LEFT: copy -->
+  <div class="hero-left">
+    <div class="eyebrow">Recurso gratuito · Claudia</div>
+    <h1 class="hero-title">
+      El Costo<br><em>Silencioso</em><br>del Éxito
+    </h1>
+    <div class="gold-line"></div>
+    <p class="hero-sub">
+      Un mensaje de Claudia para ti.<br><br>
+      Antes de hacer el diagnóstico — <strong>mira esto primero.</strong><br>
+      Son 4 minutos que van a cambiar cómo entiendes lo que estás viviendo.
+    </p>
+    <a href="file:///Users/claudiajorqueraaraya/Downloads/pagina_entrega_RV%20(1).html#diagnostico" class="btn-download">
+      Ir al diagnóstico
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </a>
+  </div>
+
+  <!-- RIGHT: video -->
+  <div class="hero-right">
+    <div class="video-wrap" id="video-wrap">
+      <!-- REEMPLAZA este bloque completo con tu iframe de YouTube/Vimeo cuando tengas el video -->
+      <div class="video-placeholder" onclick="loadVideo()">
+        <div class="play-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" fill="var(--gold)"></path>
+          </svg>
+        </div>
+        <div class="video-label">Ver mensaje de Claudia</div>
+      </div>
+    </div>
+    <p class="video-note">4 minutos · Solo para ti · Sin venta</p>
+  </div>
+
+</section>
+
+<!-- ══════════════ PASOS ══════════════ -->
+<section class="steps-section">
+
+  <div class="step">
+    <div class="step-icon"></div>
+    <div class="step-num">01</div>
+    <div class="step-title">Ve el video</div>
+    <p class="step-desc">Claudia te habla directamente. Entiende por qué el éxito que lograste no se siente como esperabas.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-icon"></div>
+    <div class="step-num">02</div>
+    <div class="step-title">Haz el diagnóstico</div>
+    <p class="step-desc">10 preguntas. 5 minutos. Descubre en cuál de los 3 niveles de agotamiento ejecutivo estás — y por qué.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-icon"></div>
+    <div class="step-num">03</div>
+    <div class="step-title">Da el siguiente paso</div>
+    <p class="step-desc">Si tu resultado resuena — hay un formulario. Claudia lo lee personalmente y te dice si hay compatibilidad.</p>
+  </div>
+
+</section>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<section class="about-section">
+
+  <div class="about-quote">
+    "El problema no es que no seas suficiente.<br>
+    Es que llevas años <span>demostrando que lo eres</span> — y ya no sabes quién eres cuando no demuestras nada."
+  </div>
+
+  <div>
+    <p class="about-text">
+      Llevo años acompañando a lideresas que desde afuera lo tienen todo — y que en privado me dicen que se sienten vacías.<br><br>
+      <strong>No es ingratitud. No es debilidad. Es el costo de un sistema que nunca te incluyó a ti.</strong><br><br>
+      Reingeniería Vital® es el método que creé para cambiar eso. No con más esfuerzo. Con una estructura diferente por dentro.
+    </p>
+    <div class="about-sig">
+      <div class="sig-name">Claudia</div>
+      <div class="sig-title">Fundadora · Reingeniería Vital®</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════ DIAGNÓSTICO ══════════════ -->
+<section class="diag-section" id="diagnostico">
+
+  <div>
+    <div class="diag-label">El siguiente paso</div>
+    <h2 class="diag-title">¿En qué nivel de<br><em>agotamiento ejecutivo</em><br>estás?</h2>
+    <p class="diag-desc">
+      El diagnóstico que vas a hacer no es un test genérico. Está diseñado específicamente para la lideresa que logró lo que quería y aún así algo no cierra.<br><br>
+      10 preguntas. Resultado inmediato. Sin correo, sin registro.
+    </p>
+  </div>
+
+  <div class="diag-card">
+    <div class="diag-card-label">Diagnóstico gratuito</div>
+    <div class="diag-card-title">El Costo Silencioso del Éxito</div>
+    <ul class="diag-list">
+      <li>10 preguntas calibradas para ejecutivas</li>
+      <li>3 perfiles posibles con descripción precisa</li>
+      <li>Resultado inmediato al terminar</li>
+      <li>Puente claro al siguiente paso real</li>
+    </ul>
+    <a href="file:///Users/claudiajorqueraaraya/Downloads/autodiagnostico_RV.html" class="btn-diag">
+      Comenzar diagnóstico
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </a>
+  </div>
+
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-brand">Reingeniería Vital®</div>
+  <div class="footer-note">Recurso privado · No compartir</div>
+</footer>
+
+<script>
+function loadVideo() {
+  // INSTRUCCIÓN: Reemplaza VIDEO_ID con tu ID de YouTube
+  // Ejemplo: si tu link es https://youtu.be/dQw4w9WgXcQ → VIDEO_ID es dQw4w9WgXcQ
+  const VIDEO_ID = 'cUDd5ynxzHY';
+
+  const wrap = document.getElementById('video-wrap');
+  wrap.innerHTML = `<iframe 
+    src="https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1" 
+    allow="autoplay; encrypted-media" 
+    allowfullscreen>
+  </iframe>`;
+}
+</script>
+
+
+
+</body></html>
